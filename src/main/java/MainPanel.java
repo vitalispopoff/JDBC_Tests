@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class MainPanel extends JPanel {
@@ -33,7 +34,13 @@ Action query_1_Action = new QueryAction();
 
     class QueryAction extends AbstractAction {
 
-        QueryAction(){}
+        QueryAction(){
+            Queries query = new Queries();
+            Connection conn = query.connect();
+
+
+
+        }
 
 
         @Override

@@ -1,6 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Queries {
 
@@ -17,6 +15,35 @@ public class Queries {
             System.out.println(e.getMessage());
         }
         return conn;
+    }
+
+    public Statement makeStatement(Connection conn) {
+        Statement statement;
+        try {
+            statement = conn.createStatement();
+            return statement;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void closeStatement(Statement statement){
+        try {
+            statement.close();
+            System.out.println("statement successfully closed");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void terminateConnection(Connection conn){
+        try {
+            conn.close();
+            System.out.println("\"Zed\'s dead\"");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
