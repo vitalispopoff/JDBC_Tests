@@ -9,6 +9,7 @@ public class MainPanel extends JPanel {
 
     Action query_1_Action = new Query_1_Action();
     Action dropTablesAction = new DropTablesAction();
+    Action rebuildTablesAction = new RebuildTablesAction();
 
     public MainPanel() {
         super();
@@ -32,7 +33,16 @@ public class MainPanel extends JPanel {
         panelRight.add(button_1);
 
         JButton button_2 = new JButton(dropTablesAction);
-        button_1.setText("");
+        button_2.setText("Usuń tabele");
+        panelRight.add(button_2);
+
+        JButton button_3 = new JButton(rebuildTablesAction);
+        button_3.setText("Odbuduj tabele");
+        panelRight.add(button_3);
+
+        JButton button_4 = new JButton(rebuildTablesAction);
+        button_4.setText("Odtwórz zawartość tabeli");
+        panelRight.add(button_4);
     }
 
     class Query_1_Action extends AbstractAction {
@@ -65,7 +75,45 @@ public class MainPanel extends JPanel {
             Queries query = new Queries();
             query.establishConnection();
             query.makeStatement();
-            System.out.println(Ask.dropTables(query));
+            Ask.dropTables(query);
+            query.closeStatement();
+            query.terminateConnection();
+
+
+        }
+    }
+
+    class RebuildTablesAction extends AbstractAction {
+
+        RebuildTablesAction() {}
+
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            Queries query = new Queries();
+            query.establishConnection();
+            query.makeStatement();
+            Ask.rebuildTables(query);
+            query.closeStatement();
+            query.terminateConnection();
+
+
+        }
+    }
+
+    class RepopulateTablesAction extends AbstractAction {
+
+        RepopulateTablesAction() {}
+
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            Queries query = new Queries();
+            query.establishConnection();
+            query.makeStatement();
+            Ask.repopulateTables(query);
             query.closeStatement();
             query.terminateConnection();
 
