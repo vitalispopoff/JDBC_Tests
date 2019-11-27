@@ -6,29 +6,36 @@ public class Queries {
     private final String USR = "postgres";
     private final String PSS = "****";
 
-    public Connection connect() {
-        Connection conn = null;
+    private Connection conn;
+    private Statement statement;
+
+    public void establishConnection() {
+        this.conn = null;
         try {
             conn = DriverManager.getConnection(URL, USR, PSS);
             System.out.println("Connected to the server. Yay!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return conn;
     }
 
-    public Statement makeStatement(Connection conn) {
-        Statement statement;
+    public void makeStatement() {
         try {
-            statement = conn.createStatement();
-            return statement;
+            this.statement = conn.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
-    public void closeStatement(Statement statement){
+    public Connection getConn() {
+        return conn;
+    }
+
+    public Statement getStatement() {
+        return statement;
+    }
+
+    public void closeStatement(){
         try {
             statement.close();
             System.out.println("statement successfully closed");
@@ -37,7 +44,7 @@ public class Queries {
         }
     }
 
-    public void terminateConnection(Connection conn){
+    public void terminateConnection(){
         try {
             conn.close();
             System.out.println("\"Zed\'s dead\"");
@@ -46,8 +53,8 @@ public class Queries {
         }
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         Queries query = new Queries();
-        query.connect();
-    }
+        query.establishConnection();
+    }*/
 }

@@ -20,8 +20,8 @@ public class Main extends JFrame {
             mainFrame.add(mainPanel);
         });
 
-        Queries query = new Queries();
-        query.connect();
+/*        Queries query = new Queries();
+        query.establishConnection();*/
     }
 
     @Override
