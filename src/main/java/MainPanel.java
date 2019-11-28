@@ -1,5 +1,3 @@
-
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -10,22 +8,22 @@ public class MainPanel extends JPanel {
     Action query_1_Action = new Query_1_Action();
     Action dropTablesAction = new DropTablesAction();
     Action rebuildTablesAction = new RebuildTablesAction();
+    Action repopulateTablesAction = new RepopulateTablesAction();
+    JTextField label;
 
     public MainPanel() {
         super();
         setBounds(20, 20, 600, 400);
-//        setBackground(new Color(255,255,0, 64));
         setLayout(null);
 
-        JLabel label = new JLabel();
+        label = new JTextField();
+
         label.setBounds(0, 0, 400, 400);
-//        label.setBackground(new Color(255,0,255,64));
         label.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
         add(label);
 
         JPanel panelRight = new JPanel(new GridLayout(8, 1));
         panelRight.setBounds(420, 0, 160, 400);
-//        panelRight.setBackground(new Color(0,255,255,128));
 
         add(panelRight);
         JButton button_1 = new JButton(query_1_Action);
@@ -40,7 +38,7 @@ public class MainPanel extends JPanel {
         button_3.setText("Odbuduj tabele");
         panelRight.add(button_3);
 
-        JButton button_4 = new JButton(rebuildTablesAction);
+        JButton button_4 = new JButton(repopulateTablesAction);
         button_4.setText("Odtwórz zawartość tabeli");
         panelRight.add(button_4);
     }
@@ -49,18 +47,15 @@ public class MainPanel extends JPanel {
 
         Query_1_Action() {}
 
-
         @Override
         public void actionPerformed(ActionEvent e) {
-
             Queries query = new Queries();
             query.establishConnection();
             query.makeStatement();
-            System.out.println(Ask.question_01(query));
+            String text = Ask.question_01(query);
+            label.setText(text);
             query.closeStatement();
             query.terminateConnection();
-
-
         }
     }
 
@@ -68,18 +63,15 @@ public class MainPanel extends JPanel {
 
         DropTablesAction() {}
 
-
         @Override
         public void actionPerformed(ActionEvent e) {
-
             Queries query = new Queries();
             query.establishConnection();
             query.makeStatement();
             Ask.dropTables(query);
+            label.setText("");
             query.closeStatement();
             query.terminateConnection();
-
-
         }
     }
 
@@ -87,18 +79,15 @@ public class MainPanel extends JPanel {
 
         RebuildTablesAction() {}
 
-
         @Override
         public void actionPerformed(ActionEvent e) {
-
             Queries query = new Queries();
             query.establishConnection();
             query.makeStatement();
             Ask.rebuildTables(query);
+            label.setText("");
             query.closeStatement();
             query.terminateConnection();
-
-
         }
     }
 
@@ -106,18 +95,15 @@ public class MainPanel extends JPanel {
 
         RepopulateTablesAction() {}
 
-
         @Override
         public void actionPerformed(ActionEvent e) {
-
             Queries query = new Queries();
             query.establishConnection();
             query.makeStatement();
             Ask.repopulateTables(query);
+            label.setText("");
             query.closeStatement();
             query.terminateConnection();
-
-
         }
     }
 }

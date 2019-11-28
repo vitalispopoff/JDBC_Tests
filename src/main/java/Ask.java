@@ -3,31 +3,30 @@ import java.sql.SQLException;
 
 public interface Ask {
 
-
     public static String question_01(Queries query) {
         StringBuilder result = new StringBuilder();
         try {
-            ResultSet answer = query.getStatement().executeQuery("SELECT tytul FROM film WHERE premiera = 2018;");
+            ResultSet answer = query.getStatement().executeQuery("SELECT tytul, gatunek FROM film WHERE premiera = 2018;");
             {
                 int i = 0;
                 while (answer.next()) {
                     i++;
                     result
-                            .append("tytuł: ").append(answer.getString("tytul")).append(", \t")
-//                    .append("gatunek: ").append(query_01.getString("gatunek")).append(", \t")
-//                    .append("produkcja: ").append(query_01.getString("produkcja"))
-                            .append(";\n");
+                            .append("\n")
+                            .append("tytuł: ").append(answer.getString("tytul")).append(", \n")
+                            .append("gatunek: ").append(answer.getString("gatunek")).append(", \n");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println(result.toString());
         return result.toString();
     }
 
     public static void dropTables(Queries query) {
         try {
-            int deleteTables = query.getStatement().executeUpdate(new StringBuilder()
+            query.getStatement().executeUpdate(new StringBuilder()
                     .append("DROP TABLE bilet;")
                     .append("DROP TABLE zamowienie;")
                     .append("DROP TABLE miejsce;")
@@ -44,7 +43,7 @@ public interface Ask {
 
     public static void rebuildTables(Queries query) {
         try {
-            int generateTables = query.getStatement().executeUpdate(new StringBuilder()
+            query.getStatement().executeUpdate(new StringBuilder()
                     .append("CREATE TABLE klient (\n")
                     .append(" idk   SERIAL  PRIMARY KEY  NOT NULL,\n")
                     .append(" login  TEXT NOT NULL,\n")
@@ -110,9 +109,9 @@ public interface Ask {
         }
     }
 
-    public static void repopulateTables(Queries query){
+    public static void repopulateTables(Queries query) {
         try {
-            boolean resultFlag = query.getStatement().execute(new StringBuilder()
+            query.getStatement().execute(new StringBuilder()
 
                     .append("INSERT INTO klient VALUES\n")
                     .append(" (1, 'janusz69', 'legia',    'janusz',  'zygi', 'janusz69@onet.pl',  '986'),\n")
@@ -175,5 +174,4 @@ public interface Ask {
             e.printStackTrace();
         }
     }
-
 }

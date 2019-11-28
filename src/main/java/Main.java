@@ -9,7 +9,6 @@ public class Main extends JFrame {
     public static void main(String[] args) {
 
         EventQueue.invokeLater(() -> {
-
             mainFrame = new JFrame();
             mainFrame.setLayout(null);
             mainFrame.setBounds(200, 200, 640, 480);
@@ -19,9 +18,6 @@ public class Main extends JFrame {
             mainPanel = new MainPanel();
             mainFrame.add(mainPanel);
         });
-
-/*        Queries query = new Queries();
-        query.establishConnection();*/
     }
 
     @Override

@@ -27,10 +27,6 @@ public class Queries {
         }
     }
 
-    public Connection getConn() {
-        return conn;
-    }
-
     public Statement getStatement() {
         return statement;
     }
@@ -38,7 +34,7 @@ public class Queries {
     public void closeStatement(){
         try {
             statement.close();
-            System.out.println("statement successfully closed");
+            System.out.println("Statement successfully closed");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -47,14 +43,9 @@ public class Queries {
     public void terminateConnection(){
         try {
             conn.close();
-            System.out.println("\"Zed\'s dead\"");
+            System.out.println("Connection terminated.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-/*    public static void main(String[] args) {
-        Queries query = new Queries();
-        query.establishConnection();
-    }*/
 }
