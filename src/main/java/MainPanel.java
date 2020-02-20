@@ -5,19 +5,19 @@ import java.awt.event.ActionEvent;
 
 public class MainPanel extends JPanel {
 
-    Action query_1_Action = new Query_1_Action();
-    Action dropTablesAction = new DropTablesAction();
-    Action rebuildTablesAction = new RebuildTablesAction();
-    Action repopulateTablesAction = new RepopulateTablesAction();
     JTextField label;
-
+    Action 
+        query_1_Action = new Query_1_Action(),
+        dropTablesAction = new DropTablesAction(),
+        rebuildTablesAction = new RebuildTablesAction(),
+        repopulateTablesAction = new RepopulateTablesAction();
+    
     public MainPanel() {
         super();
         setBounds(20, 20, 600, 400);
         setLayout(null);
 
         label = new JTextField();
-
         label.setBounds(0, 0, 400, 400);
         label.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
         add(label);
