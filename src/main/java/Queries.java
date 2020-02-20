@@ -2,10 +2,10 @@ import java.sql.*;
 
 public class Queries {
 
-    private final String URL = "jdbc:postgresql://localhost/postgres";
-    private final String USR = "postgres";
-    private final String PSS = "****";
-
+    private final String 
+        URL = "jdbc:postgresql://localhost/postgres",
+        USR = "postgres",
+        PSS = "****";
     private Connection conn;
     private Statement statement;
 
