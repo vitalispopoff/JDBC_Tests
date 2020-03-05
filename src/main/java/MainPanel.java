@@ -1,7 +1,5 @@
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class MainPanel extends JPanel {
 
